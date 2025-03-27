@@ -4,7 +4,6 @@ test('should add numbers in the string', () => {
 	expect(stringCalc('')).toBe(0)
 	expect(stringCalc('1,2,3')).toBe(6)
 	expect(stringCalc('1,4')).toBe(5)
-	expect(stringCalc('-1,4')).toBe(3)
 	expect(stringCalc(' 1 , 2 , 3 ')).toBe(6)
 	expect(stringCalc(' 1 , 2 , 3, ')).toBe(6)
 })
@@ -25,4 +24,11 @@ test('should split on new lines as well as commas', () => {
 test('should also accept custom delimiters', () => {
 	expect(stringCalc(';\n1\n2;3;3')).toBe(9)
 	expect(stringCalc(';\n1;2;3;4')).toBe(10)
+})
+
+test('should not allow negative numbers', () => {
+	expect(() => stringCalc('-1,4')).toThrow('Negative numbers not allowed: -1')
+	expect(() => stringCalc('-1,-4, -5')).toThrow(
+		'Negative numbers not allowed: -1,-4,-5'
+	)
 })
