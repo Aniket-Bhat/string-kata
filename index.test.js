@@ -21,3 +21,8 @@ test('should split on new lines as well as commas', () => {
 	expect(stringCalc('1\n2,3,3')).toBe(9)
 	expect(stringCalc('1\n2\n2\n3')).toBe(8)
 })
+
+test('should also accept custom delimiters', () => {
+	expect(stringCalc(';\n1\n2;3;3')).toBe(9)
+	expect(stringCalc(';\n1;2;3;4')).toBe(10)
+})
